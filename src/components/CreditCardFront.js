@@ -1,11 +1,12 @@
 import React from "react";
 
 export default function CreditCardFront(props) {
+  const digits = [];
+
   const getCardType = () => {
-    if (props.cardNumber.join('').length === 16)
-    {
-      if (props.cardNumber[0][0] === "4") return "Visa";
-      else if (props.cardNumber[0][0] === "5") return "MasterCard";
+    if (props.cardNumber.length === 16) {
+      if (props.cardNumber[0] === "4") return "Visa";
+      else if (props.cardNumber[0] === "5") return "MasterCard";
     }
     return ""
   }
@@ -23,61 +24,37 @@ export default function CreditCardFront(props) {
     props.onCardNumberChange(e);
   }
 
+  const getInputType = (index) => {
+    if ([4,5,6,7,8,9,10,11].includes(index)) return "password";
+    else return "text";
+  }
+
+  for (let i = 0; i < 16; i++) {
+    digits.push(
+      <input
+        key={i}
+        id={"cardInput" + i}
+        className="cardInput"
+        type={getInputType(i)}
+        onChange={handleInputChange}
+
+        maxLength={1}
+        data-inputtype="carddigit"
+        data-inputindex={i}
+        data-nextinput={"cardInput" + (i + 1)}
+        onFocus={(e) => e.target.select()} />
+    )
+  }
+
   return (
     // TODO: div in background una sketch veya css
     <div className="creditCardFront">
       {/* <img src={getCardImage()} /> */}
-      <p>{getCardType()}</p>
+      <div className="cardType">{getCardType()}</div>
 
-      <div>
-        <input 
-            id="cardInput1" 
-            type="text" 
-            value={props.cardNumber[0]} 
-            onChange={handleInputChange} 
-
-            maxLength={4}
-            data-inputtype="cardnumber"
-            data-inputindex="0"
-            data-nextinput="cardInput2" 
-            onFocus={(e) => e.target.select()}  />
-
-        <input 
-            id="cardInput2" 
-            type="password" 
-            onChange={handleInputChange}
-            value={props.cardNumber[1]} 
-
-            maxLength={4} 
-            data-inputtype="cardnumber"
-            data-inputindex="1"
-            data-nextinput="cardInput3" 
-            onFocus={(e) => e.target.select()}  />
-
-        <input 
-            id="cardInput3" 
-            type="password" 
-            value={props.cardNumber[2]} 
-            onChange={handleInputChange}
-
-            maxLength={4} 
-            data-inputtype="cardnumber"
-            data-inputindex="2"
-            data-nextinput="cardInput4" 
-            onFocus={(e) => e.target.select()} />
-
-        <input 
-            id="cardInput4" 
-            type="text" 
-            value={props.cardNumber[3]} 
-            onChange={handleInputChange}
-
-            maxLength={4} 
-            data-inputtype="cardnumber"
-            data-inputindex="3"
-            onFocus={(e) => e.target.select()} />
+      <div className="cardInputContainer">
+        {digits}
       </div>
-      {/* <CardInputGroup cardNumber={props.cardNumber} onCardNumberChange={props.onCardNumberChange} /> */}
     </div>
   )
 }

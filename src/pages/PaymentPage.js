@@ -3,7 +3,7 @@ import CreditCard from "../components/CreditCard";
 
 export default function PaymentPage(props) {
   const [card, setCard] = useState({
-    cardNumber: ["", "", "", ""], // 1111 2222 3333 4444
+    cardNumber: new Array(16).fill(""),
     expirationDate: { year: "", month: ""},
     ccv: ""
   });
@@ -30,7 +30,7 @@ export default function PaymentPage(props) {
           updatedValue = { ccv: e.target.value }
           break;
 
-        case "cardnumber":
+        case "carddigit":
           const prevCardNumber = [...prev.cardNumber]
           prevCardNumber[e.target.dataset.inputindex] = e.target.value;
           updatedValue = { cardNumber: prevCardNumber };
