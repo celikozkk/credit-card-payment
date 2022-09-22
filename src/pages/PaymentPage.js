@@ -1,39 +1,52 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import CreditCard from "../components/CreditCard";
 
 export default function PaymentPage(props) {
-  const [cardNumber, setCardNumber] = useState("");
-  const [expirationYear, setExpirationYear] = useState("");
-  const [expirationMonth, setExpirationMonth] = useState("");
-  const [ccv, setCcv] = useState("");
+  const [card, setCard] = useState({
+    cardNumber: ["", "", "", ""], // 1111 2222 3333 4444
+    expirationDate: { year: "", month: ""},
+    ccv: ""
+  });
 
-  const card = {cardNumber, expirationYear, expirationMonth, ccv};
+  const handleFlipClick = (e) => {
 
-  const handleCardNumberChange = (e) => {
-    setCardNumber(e.target.value);
   }
 
-  const handleExpirationYearChange = (e) => {
-    setExpirationYear(e.target.value);
+  const handlePayClick = (e) => {
+
   }
 
-  const handleExpirationMonthChange = (e) => {
-    setExpirationMonth(e.target.value);
-  }
+  const handleCardChange = (e) => {
+    setCard((prev) => {
+      let updatedValue = {}
+      switch (e.target.dataset.inputtype) {
+        case "date":
+          const prevDate = {...prev.expirationDate}
+          prevDate[e.target.id] = e.target.value;
+          updatedValue = { expirationDate: prevDate }
+          break;
+          
+        case "ccv":
+          updatedValue = { ccv: e.target.value }
+          break;
 
-  const handleCcvChange = (e) => {
-    setCcv(e.target.value);
+        case "cardnumber":
+          const prevCardNumber = [...prev.cardNumber]
+          prevCardNumber[e.target.dataset.inputindex] = e.target.value;
+          updatedValue = { cardNumber: prevCardNumber };
+          break;
+
+        default:
+      }
+      return { ...prev, ...updatedValue }
+    })
   }
 
   return (
     <div className="PaymentPage">
-      <CreditCard card={card}
-        onCardNumberChange={handleCardNumberChange}
-        onExpirationYearChange={handleExpirationYearChange}
-        onExpirationMonthChange={handleExpirationMonthChange}
-        onCcvChange={handleCcvChange} />
-      <button>Flip</button>
-      <button>Pay</button>
+      <CreditCard card={card} onCardChange={handleCardChange} />
+      <button onClick={handleFlipClick}>Flip</button>
+      <button onClick={handlePayClick}>Pay</button>
     </div>
   )
 }

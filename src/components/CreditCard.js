@@ -3,24 +3,20 @@ import CreditCardBack from "./CreditCardBack";
 import CreditCardFront from "./CreditCardFront";
 
 export default function CreditCard(props) {
-  const {cardNumber, expirationYear, expirationMonth, ccv} = props.card;
+  const { cardNumber, expirationDate, ccv } = props.card;
 
   return (
     <div>
       <CreditCardFront
         cardNumber={cardNumber}
-        onCardNumberChange={props.onCardNumberChange}
-      />
+        onCardNumberChange={props.onCardChange} />
 
       <CreditCardBack
-        expirationMonth={expirationMonth}
-        onExpirationMonthChange={props.onExpirationMonthChange}
-
-        expirationYear={expirationYear}
-        onExpirationYearChange={props.onExpirationYearChange}
+        expirationDate={expirationDate}
+        onExpirationDateChange={props.onCardChange}
 
         ccv={ccv}
-        onCcvChange={props.onCcvChange} />
+        onCcvChange={props.onCardChange} />
     </div>
   )
 }
