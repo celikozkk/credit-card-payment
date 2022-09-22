@@ -49,7 +49,6 @@ export default function CreditCardFront(props) {
   return (
     // TODO: div in background una sketch veya css
     <div className="creditCardFront">
-      {/* <img src={getCardImage()} /> */}
       <div className="cardType">{getCardType()}</div>
 
       <div className="cardInputContainer">
