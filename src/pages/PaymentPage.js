@@ -8,12 +8,23 @@ export default function PaymentPage(props) {
     ccv: ""
   });
 
+  const [cardFace, setCardFace] = useState(0);
+
   const handleFlipClick = (e) => {
+    if (cardFace === 0) {
+      // @ts-ignore
+      document.getElementById("card-container").style.transform = "rotateY(180deg)";
+      setCardFace(1);
+    } else {
+      // @ts-ignore
+      document.getElementById("card-container").style.transform = "rotateY(0deg)";
+      setCardFace(0);
+    }
 
   }
 
   const handlePayClick = (e) => {
-
+    console.log(card);
   }
 
   const handleCardChange = (e) => {
@@ -44,9 +55,9 @@ export default function PaymentPage(props) {
 
   return (
     <div className="PaymentPage">
-      <CreditCard card={card} onCardChange={handleCardChange} />
-      <button onClick={handleFlipClick}>Flip</button>
-      <button onClick={handlePayClick}>Pay</button>
+      <CreditCard card={card} onCardChange={handleCardChange} width={500} />
+      <button className="flip-button" onClick={handleFlipClick}>Flip</button>
+      <button className="pay-button" onClick={handlePayClick}>Pay</button>
     </div>
   )
 }

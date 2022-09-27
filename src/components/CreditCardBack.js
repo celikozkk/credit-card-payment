@@ -1,4 +1,5 @@
 import React from "react"
+import "../styles/CreditCardBack.css";
 
 export default function CreditCardBack(props) {
   const {year, month} = props.expirationDate;
@@ -27,43 +28,52 @@ export default function CreditCardBack(props) {
   }
 
   return (
-    <div className="creditCardBack">
-      <div className="expirationDate">
-        <input 
-            id="year" 
-            type="text" 
-            value={year}
-            onChange={handleExpirationDateInputChange}
-            placeholder="yyyy" 
+    <div className="card-layout card-back">
+      <div className="stripe"></div>
 
-            maxLength={4} 
-            data-inputtype="date"
-            data-nextinput="month"
-            onFocus={(e) => e.target.select()} />
-
-        <input 
-            id="month" 
-            type="text" 
+      <div className="card-back__info">
+        <div className="expirationDate">
+          <input
+            id="month"
+            type="text"
             value={month}
             onChange={handleExpirationDateInputChange}
-            placeholder="mm" 
+            placeholder="mm"
 
-            maxLength={2} 
+            maxLength={2}
             data-inputtype="date"
-            data-nextinput="ccv" 
+            data-nextinput="year"
             onFocus={(e) => e.target.select()} />
-      </div>
 
-      <div className="ccv">
-        <input 
-            id="ccv" 
-            type="text" 
-            value={props.ccv} 
+          <span style={{display: month.length === 2 ? 'initial' : 'none'}} className="slash">/</span>
+
+          <input
+            id="year"
+            type="text"
+            value={year}
+            onChange={handleExpirationDateInputChange}
+            placeholder="yyyy"
+
+            maxLength={4}
+            data-inputtype="date"
+            data-nextinput="ccv"
+            onFocus={(e) => e.target.select()} />
+
+        </div>
+
+        <div className="ccv">
+          <input
+            id="ccv"
+            type="text"
+            value={props.ccv}
             onChange={handleCcvChange}
+            placeholder={"CCV"}
 
-            maxLength={3} 
+            maxLength={3}
             data-inputtype="ccv"
             onFocus={(e) => e.target.select()} />
+        </div>
+
       </div>
     </div>
   )

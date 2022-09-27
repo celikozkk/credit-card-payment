@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+.flip-button, .pay-button {
+  width: 200px;
+  height: 65px;
+  font-size: 30px;
+  background: black;
+  color: white;
+  display: block;
+  margin: auto;
+  border: none;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.pay-button {
+  background-color: green;
+  color: white;
+  margin-top: 10px;
+}
