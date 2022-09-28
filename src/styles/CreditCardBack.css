@@ -19,29 +19,32 @@
 }
 
 .expirationDate input, .ccv input {
-  font-size: 27px;
-  text-align: center;
+  font-size: 20px;
   border: none;
   background: none;
   height: 35px;
   outline: none;
   font-family: 'Titillium Web', sans-serif;
-  padding: 0;
+  padding: 0 5px;
+}
+
+.expirationDate input::placeholder {
+  font-size: 15px;
 }
 
 input#year {
-  width: 70px;
+  width: 48px;
 }
 
 input#month {
-  width: 50px;
+  width: 25px;
 }
 
 input#ccv {
   width: 70px;
 }
 
-span.slash {
+.slash {
   font-family: 'Titillium Web', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
 }

@@ -5,16 +5,28 @@
 
 .card-container {
   transform-style: preserve-3d;
-  transition: all 0.5s linear;
+  transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
   width: 100%;
   height: 100%;
 }
 
 .card-layout {
   border-radius: 16px;
-  background-color: #d4af37;
+  background-color: #ccc;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   position: absolute;
+}
+
+.card-label {
+  font-size: 15px;
+  color: #555;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.input-container {
+  background-color: #ddd;
+  border-radius: 2px;
+  padding: 0 2px;
 }

@@ -55,3 +55,8 @@
   color: white;
   margin-top: 10px;
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

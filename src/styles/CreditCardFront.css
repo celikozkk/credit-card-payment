@@ -5,43 +5,34 @@
 
 .cardnumber-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  padding-bottom: 20px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 30px;
+  padding-bottom: 30px;
 }
 
 .cardnumber-inputs {
   display: flex;
   justify-content: flex-start;
-  width: 100%;
-  padding-left: 30px;
-  padding-bottom: 20px;
-  gap: 16px;
+  gap: 10px;
 }
 
 .cardnumber-inputs input {
   font-size: 27px;
   text-align: center;
+  border: 1px solid gray;
   border: none;
   background: none;
-  width: 22px;
+  width: 60px;
   height: 36px;
   padding: 0;
   font-family: 'Titillium Web', sans-serif;
   outline: none;
 }
 
-.cardnumber-inputs input::selection {
-  color: red;
-}
-
-.cardnumber-inputs input:focus {
-  caret-color: transparent;
-  color: red;
-}
-
-.cardnumber-inputs input:focus::placeholder {
-  color: red;
+.card-type {
+  padding-left: 30px;
+  padding-top: 20px
 }
 
 .card-type-image-container {
@@ -49,8 +40,6 @@
   height: 50px;
   display: flex;
   align-items: center;
-  padding-left: 30px;
-  padding-top: 20px
 }
 
 .card-type-image-container img {
