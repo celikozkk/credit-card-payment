@@ -60,3 +60,7 @@ input::-ms-reveal,
 input::-ms-clear {
   display: none;
 }
+
+.card-font {
+  font-family: 'Titillium Web', sans-serif;
+}

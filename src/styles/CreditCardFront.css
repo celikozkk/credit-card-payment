@@ -14,11 +14,11 @@
 .cardnumber-inputs {
   display: flex;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 5px;
 }
 
 .cardnumber-inputs input {
-  font-size: 27px;
+  font-size: 25px;
   text-align: center;
   border: 1px solid gray;
   border: none;
