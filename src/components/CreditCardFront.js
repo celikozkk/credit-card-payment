@@ -48,6 +48,7 @@ export default function CreditCardFront(props) {
         value={props.cardNumber[i]}
         onChange={handleInputChange}
         placeholder={i.toString().repeat(4)}
+        inputMode={"numeric"}
 
         maxLength={4}
         data-inputtype="cardinput"

@@ -39,21 +39,27 @@
 
 
 .flip-button, .pay-button {
-  width: 200px;
-  height: 65px;
-  font-size: 30px;
+  width: 170px;
+  height: 60px;
+  font-size: 24px;
   background: black;
   color: white;
   display: block;
   margin: auto;
   border: none;
   font-family: 'Titillium Web', sans-serif;
+  border-radius: 10px;
+}
+
+.flip-button {
+  margin-top: 50px;
 }
 
 .pay-button {
   background-color: green;
   color: white;
   margin-top: 10px;
+  transition: all 0.25s ease;
 }
 
 input::-ms-reveal,
@@ -63,4 +69,8 @@ input::-ms-clear {
 
 .card-font {
   font-family: 'Titillium Web', sans-serif;
+}
+
+.button-disabled {
+  background-color: gray;
 }

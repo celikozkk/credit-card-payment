@@ -68,6 +68,7 @@ export default function CreditCardBack(props) {
               value={month}
               onChange={handleExpirationDateChange}
               placeholder="mm"
+              inputMode={"numeric"}
 
               maxLength={2}
               data-inputtype="date"
@@ -82,6 +83,7 @@ export default function CreditCardBack(props) {
               value={year}
               onChange={handleExpirationDateChange}
               placeholder="yyyy"
+              inputMode={"numeric"}
 
               maxLength={4}
               data-inputtype="date"
@@ -101,6 +103,7 @@ export default function CreditCardBack(props) {
               onChange={handleCcvChange}
               maxLength={3}
               data-inputtype="ccv"
+              inputMode={"numeric"}
               onFocus={(e) => e.target.select()} />
           </div>
         </div>

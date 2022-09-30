@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CreditCard from "../components/CreditCard";
+import Toast from "../components/Toast";
 
 export default function PaymentPage(props) {
   const [card, setCard] = useState({
@@ -9,7 +10,11 @@ export default function PaymentPage(props) {
   });
 
   const [cardFace, setCardFace] = useState(0);
-  const [payButtonText, setPayButtonText] = useState("Pay");
+  const [payButtonOptions, setPayButtonOptions] = useState({
+    text: "Pay",
+    disabled: false
+  });
+  const [toastOptions, setToastOptions] = useState({});
 
   const handleFlipClick = (e) => {
     if (cardFace === 0) {
@@ -25,7 +30,7 @@ export default function PaymentPage(props) {
   }
 
   const handlePayClick = (e) => {
-    setPayButtonText("Processing...");
+    setPayButtonOptions({text: "Processing", disabled: true});
 
     fetch('https://mocki.io/v1/a5ae8585-b42d-486b-a4ff-25ebfebbaddf')
       .then((response) => response.json())
@@ -43,23 +48,27 @@ export default function PaymentPage(props) {
         });
     
         if (cardExist) {
-          // todo: toast
-          alert("Payment successful")
+          setToastOptions({
+            message: "Payment successful",
+            type: "success"
+          });
         }
         else {
-          // todo: toast
-          alert("Payment failed");
+          setToastOptions({
+            message: "Payment failed",
+            type: "danger"
+          });
         }
 
         setTimeout(() => {
-          setPayButtonText("Pay");
+          setPayButtonOptions({text: "Pay", disabled: false});
         }, 500);
       })
       .catch((error) => {
         console.error(error);
 
         setTimeout(() => {
-          setPayButtonText("Pay");
+          setPayButtonOptions({text: "Pay", disabled: false});
         }, 500);
       });
 
@@ -94,9 +103,15 @@ export default function PaymentPage(props) {
   return (
     <div className="PaymentPage">
       <h1 className="card-font" style={{textAlign: "center"}}>Payment Information</h1>
-      <CreditCard card={card} onCardChange={handleCardChange} width={500} />
+      <CreditCard card={card} onCardChange={handleCardChange} width={400} />
+
       <button className="flip-button" onClick={handleFlipClick}>Flip</button>
-      <button className="pay-button" onClick={handlePayClick}>{payButtonText}</button>
+
+      <button disabled={payButtonOptions.disabled} 
+              className={`pay-button ${payButtonOptions.disabled ? 'button-disabled' : ''}`} 
+              onClick={handlePayClick}>{payButtonOptions.text}</button>
+
+      <Toast options={toastOptions} />
     </div>
   )
 }
